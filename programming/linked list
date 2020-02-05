@@ -1,0 +1,96 @@
+package project.project;
+
+public class LinkedList {
+	Node head;
+	Node tail;
+    int length=0;
+    
+	class Node{
+		int val;
+		Node next;
+		
+		public Node(int data){
+			this.val=data;
+		}
+	}
+
+	public void addNode(int data){
+		Node newNode=new Node(data);
+		
+		if(head==null){
+			head=newNode;
+			tail=newNode;
+		}else{
+			tail.next=newNode;
+			tail=newNode;
+		}
+		length++;
+	}
+	
+	public void printLength(){
+		System.out.println("The length is "+ length);
+	}
+	
+	public boolean searchNode(int val){
+		Node temp=head;
+		while(temp!=null){
+		if(temp.val==val){
+			return true;
+		}else{
+			temp=temp.next;
+		}
+     }
+		return false;
+	}
+	
+	public void deleteNode(int val){
+		//if(searchNode(val)){
+			Node temp=head , prev=null;
+			if(temp!=null && temp.val==val){
+				head=temp.next;
+				return;
+			}
+			
+			//length--;
+		//}
+			//else{
+			//System.out.println("The Node is not present in the Linked List!");
+		//}
+			while(temp!=null && temp.val!=val){
+				prev=temp;
+				temp=temp.next;
+			}
+	}
+	
+	public void deleteNodeAtIndex(int index){
+		if(index<0 ||index>=length){
+			return;
+		}else
+			length--;
+	}
+	public void printLinkedList(){
+		if(head==null){
+			return;
+		}else{
+			Node temp=head;
+			
+			while(temp!=null){
+				System.out.print(temp.val+" ");
+				temp=temp.next;
+			}
+		}
+	}
+	public static void main(String[] args) {
+      LinkedList list=new LinkedList();
+      list.addNode(1);
+      list.addNode(2);
+      list.addNode(3);
+      list.addNode(4);
+      list.deleteNode(3);
+     // list.deleteNodeAtIndex(1);
+      list.printLength();
+      list.printLinkedList();
+      
+	}
+
+}
